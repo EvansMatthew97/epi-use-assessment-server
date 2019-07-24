@@ -8,6 +8,14 @@ export interface Config {
   [key: string]: string;
 }
 
+export interface DatabaseConfig {
+  type: string;
+  database: string;
+  username?: string;
+  password?: string;
+  port?: number;
+}
+
 /**
  * Configuration service
  * Handles all system configuration through .env files
@@ -26,12 +34,31 @@ export class ConfigService {
   }
 
   /**
+   * Returns the database configuration from the .env file
+   */
+  get databaseConfig(): DatabaseConfig {
+    return {
+      type: this.config.DATABASE_TYPE,
+      database: this.config.DATABASE,
+      username: this.config.DATABASE_USER,
+      password: this.config.DATABASE_PASS,
+      port: this.config.DATABASE_PORT ? parseInt(this.config.DATABASE_PORT, 10) : null,
+    };
+  }
+
+  /**
    * Checks whether the provided .env file is valid or not.
    * Defaults are applied when values are not given.
    * @param config The configuration object loaded from reading the env file
    */
   private validateConfig(config: Config): Config {
-    const envSchema: Joi.ObjectSchema = Joi.object({});
+    const envSchema: Joi.ObjectSchema = Joi.object({
+      DATABASE_TYPE: Joi.string().required(),
+      DATABASE: Joi.string().required(),
+      DATABASE_USER: Joi.string().optional(),
+      DATABASE_PASS: Joi.string().optional(),
+      DATABASE_PORT: Joi.number().optional(),
+    });
 
     const { error, value: validatedConfig } = Joi.validate(config, envSchema);
     if (error) {

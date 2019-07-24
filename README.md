@@ -37,18 +37,12 @@ $ npm run test:cov
 ```
 
 ## Configuration
-### Database
-The `ormconfig.json` file is used to configure the database.
-Example configuration:
-```
-{
-  "type": "mysql",
-  "host": "127.0.0.1",
-  "port": 3306,
-  "username": "root",
-  "password": "",
-  "database": "epi-use-db",
-  "entities": ["src/**/*.entity.ts"],
-  "synchronize": "true"
-}
-```
+All system configuration is stored in the `.env` file.
+An example .env file is given `.env.example`
+
+### Valid options and descriptions:
+- DATABASE - the name of the database (string)
+- DATABASE_TYPE - the type of database (sqlite, mysql, etc.)
+- DATABASE_USER - database username (string, optional)
+- DATABASE_PASS - database password (string, optional)
+- DATABASE_PORT - database port (number, optional)
