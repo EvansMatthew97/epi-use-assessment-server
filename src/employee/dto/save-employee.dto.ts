@@ -1,5 +1,4 @@
-import { IsNotEmpty, Length, IsOptional, IsDate, IsNumber, IsPositive } from 'class-validator';
-import { Optional } from '@nestjs/common';
+import { IsNotEmpty, Length, IsOptional, IsNumber, IsPositive, IsDateString } from 'class-validator';
 
 export class SaveEmployeeDto {
   @IsOptional()
@@ -14,7 +13,7 @@ export class SaveEmployeeDto {
   surname: string;
 
   @IsNotEmpty()
-  @IsDate()
+  @IsDateString()
   birthdate: Date;
 
   @IsNumber()
@@ -25,6 +24,6 @@ export class SaveEmployeeDto {
   employeeRoleId: number;
 
   @IsNumber()
-  @Optional()
+  @IsOptional()
   reportsToEmployeeId: number;
 }

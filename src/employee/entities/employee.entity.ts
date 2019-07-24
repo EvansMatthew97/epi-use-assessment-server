@@ -9,6 +9,9 @@ import { EmployeeRole } from './employee-role.entity';
  */
 @Entity()
 export class Employee {
+  @Column()
+  isActive: boolean = true;
+
   @PrimaryGeneratedColumn()
   employeeNumber: number;
 

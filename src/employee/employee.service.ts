@@ -7,6 +7,7 @@ import { SaveEmployeeDto } from './dto/save-employee.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { SaveRoleDto } from './dto/save-role.dto';
 import { RemoveRoleDto } from './dto/remove-role.dto';
+import { RemoveEmployeeDto } from './dto/remove-employee.dto';
 
 @Injectable()
 export class EmployeeService {
@@ -22,8 +23,35 @@ export class EmployeeService {
    */
   async getEmployees(): Promise<Employee[]> {
     return await this.employeeRepository.find({
+      where: {
+        isActive: true,
+      },
       loadRelationIds: true,
     });
+  }
+
+  /**
+   * Removes an employee from the database. The record isn't actually deleted,
+   * and instead is set to inactive
+   * @param details
+   */
+  async removeEmployee(details: RemoveEmployeeDto) {
+    const employee = await this.employeeRepository.findOne({
+      where: {
+        employeeNumber: details.employeeNumber,
+        isActive: true,
+      },
+    });
+
+    if (!employee) {
+      throw new Error('Cannot find an employee with that employee number');
+    }
+
+    employee.isActive = false;
+
+    await this.employeeRepository.save(employee);
+
+    return employee;
   }
 
   /**
@@ -38,6 +66,7 @@ export class EmployeeService {
     // is given and the employee exists
     let employee = !employeeDetails.employeeNumber ? null : await this.employeeRepository.findOne({
       where: {
+        isActive: true,
         employeeNumber: employeeDetails.employeeNumber,
       },
     });
@@ -54,6 +83,7 @@ export class EmployeeService {
     // get the employee role and ensure it exists
     const employeeRole = await this.employeeRoleRepository.findOne({
       where: {
+        isActive: true,
         id: employeeDetails.employeeRoleId,
       },
     });
@@ -65,7 +95,8 @@ export class EmployeeService {
     // find and check that the "reports to" employee exists if the parameter was given
     const reportsToEmployee = !employeeDetails.reportsToEmployeeId ? null : await this.employeeRepository.findOne({
       where: {
-        id: employeeDetails.reportsToEmployeeId,
+        isActive: true,
+        employeeNumber: employeeDetails.reportsToEmployeeId,
       },
     });
 
@@ -77,7 +108,7 @@ export class EmployeeService {
     // set the employee entity's details
     employee.name = employeeDetails.name;
     employee.surname = employeeDetails.surname;
-    employee.birthdate = employeeDetails.birthdate;
+    employee.birthdate = new Date(employeeDetails.birthdate);
     employee.salary = employeeDetails.salary;
     employee.role = employeeRole;
     employee.reportsTo = reportsToEmployee;
@@ -90,7 +121,11 @@ export class EmployeeService {
    * Returns all employee roles from the database
    */
   async getEmployeeRoles(): Promise<EmployeeRole[]> {
-    return await this.employeeRoleRepository.find();
+    return await this.employeeRoleRepository.find({
+      where: {
+        isActive: true,
+      },
+    });
   }
 
   /**
@@ -101,6 +136,7 @@ export class EmployeeService {
     // find existing role if id provided
     let role = !details.id ? null : await this.employeeRoleRepository.findOne({
       where: {
+        isActive: true,
         id: details.id,
       },
     });
@@ -120,7 +156,8 @@ export class EmployeeService {
   }
 
   /**
-   * Removes the role with the given id from the database.
+   * Removes the role with the given id from the database (sets it
+   * to inactive).
    * Replaces all employees who had the role with the specified
    * role. There always needs to be at least one role.
    */
@@ -133,6 +170,7 @@ export class EmployeeService {
     // find the role to remove
     const roleToRemove = await this.employeeRoleRepository.findOne({
       where: {
+        isActive: true,
         id: details.roleToRemoveId,
       },
     });
@@ -144,6 +182,7 @@ export class EmployeeService {
     // find the role to replace with
     const roleToReplace = await this.employeeRoleRepository.findOne({
       where: {
+        isActive: true,
         id: details.roleToReplaceId,
       },
     });
@@ -155,6 +194,7 @@ export class EmployeeService {
     // all employees who have the roles to be removed have their role replaced
     const employeesWithRole = await this.employeeRepository.find({
       where: {
+        isActive: true,
         role: roleToRemove,
       },
     });
@@ -165,6 +205,7 @@ export class EmployeeService {
     }));
 
     // finally remove the role
-    await this.employeeRoleRepository.remove(roleToRemove);
+    roleToRemove.isActive = false;
+    await this.employeeRoleRepository.save(roleToRemove);
   }
 }

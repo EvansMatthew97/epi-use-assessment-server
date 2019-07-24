@@ -43,7 +43,7 @@ export class EmployeeController {
   /**
    * Saves an employee role. If the role already exists, updates.
    */
-  @Post('saveRole')
+  @Post('save-role')
   async addRole(@Body() details: SaveRoleDto) {
     await this.employeeService.saveEmployeeRole(details);
     return true;
@@ -55,7 +55,7 @@ export class EmployeeController {
    * being removed.
    * @param details
    */
-  @Post('removeRole')
+  @Post('remove-role')
   async removeRole(@Body() details: RemoveRoleDto) {
     await this.employeeService.removeEmployeeRole(details);
     return true;
