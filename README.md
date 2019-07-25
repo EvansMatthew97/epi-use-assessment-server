@@ -36,6 +36,14 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+
+## Generating Documentation
+This project is configured to use compodoc.
+To generate documentation, run:
+```
+$ npm run doc
+```
+
 ## Configuration
 All system configuration is stored in the `.env` file.
 An example .env file is given `.env.example`

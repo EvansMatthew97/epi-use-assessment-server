@@ -212,7 +212,9 @@ export class EmployeeService {
   /**
    * Finds the highest earning employee per employee role
    */
-  async findHighestPaidEmployeePerRole() {
+  async findHighestPaidEmployeePerRole(): Promise<{
+    [roleId: number]: Employee,
+  }> {
     const roles = await this.employeeRoleRepository.find({
       where: {
         isActive: true,
@@ -222,7 +224,7 @@ export class EmployeeService {
     const result = {};
 
     await Promise.all(roles.map(role => new Promise(async resolve => {
-      result[role.name] = await this.employeeRepository.findOne({
+      result[role.id] = await this.employeeRepository.findOne({
         where: {
           isActive: true,
           role,
