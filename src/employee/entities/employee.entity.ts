@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
-import { EmployeeRole } from './employee-role.entity';
+import { EmployeeRole } from '../../employee-role/entities/employee-role.entity';
 
 /**
  * Represents a single employee.

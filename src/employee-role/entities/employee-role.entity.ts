@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { Employee } from './employee.entity';
+import { Employee } from '../../employee/entities/employee.entity';
 
 /**
  * Employee role lookup table
