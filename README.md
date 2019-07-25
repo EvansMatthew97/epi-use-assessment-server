@@ -1,4 +1,5 @@
 # EPI-USE Technical Assessment Project
+[![Build Status](https://travis-ci.com/EvansMatthew97/epi-use-assessment-server.svg?branch=master)](https://travis-ci.com/EvansMatthew97/epi-use-assessment-server)
 
 ## Description
 
@@ -45,12 +46,12 @@ $ npm run doc
 ```
 
 ## Configuration
-All system configuration is stored in the `.env` file.
-An example .env file is given `.env.example`
+All system configuration is stored in the system environment.
+These properties can be overridden using the `.env` file.
+
+An example .env file is given at `/.env.example`
 
 ### Valid options and descriptions:
 - DATABASE - the name of the database (string)
 - DATABASE_TYPE - the type of database (sqlite, mysql, etc.)
-- DATABASE_USER - database username (string, optional)
-- DATABASE_PASS - database password (string, optional)
-- DATABASE_PORT - database port (number, optional)
+- DATABASE_URL - database url (contains username, password, etc. information)

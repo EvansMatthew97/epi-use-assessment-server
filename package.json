@@ -17,7 +17,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "doc": "npx compodoc -p tsconfig.json -s"
+    "doc": "npx compodoc -p tsconfig.json -s",
+    "postinstall": "npm run build"
   },
   "dependencies": {
     "@nestjs/common": "^6.0.0",
@@ -32,6 +33,7 @@
     "dotenv": "^8.0.0",
     "helmet": "^3.19.0",
     "joi": "^14.3.1",
+    "pg": "^7.11.0",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
     "rxjs": "^6.3.3",
