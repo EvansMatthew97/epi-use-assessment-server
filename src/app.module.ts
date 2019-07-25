@@ -3,6 +3,8 @@ import { ConfigModule } from './config/config.module';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { EmployeeModule } from './employee/employee.module';
 import { ConfigService } from './config/config.service';
+import { Employee } from './employee/entities/employee.entity';
+import { EmployeeRole } from './employee/entities/employee-role.entity';
 
 @Module({
   imports: [
@@ -12,7 +14,10 @@ import { ConfigService } from './config/config.service';
       useFactory: async (configService: ConfigService) => ({
         ...configService.databaseConfig,
         synchronize: true,
-        entities: ['**/*.entity.ts'],
+        entities: [
+          Employee,
+          EmployeeRole,
+        ],
       } as TypeOrmModuleOptions),
       inject: [ConfigService],
     }),
