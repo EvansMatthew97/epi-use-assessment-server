@@ -20,11 +20,7 @@ export class EmployeeRoleService {
    * Returns all employee roles from the database
    */
   async getEmployeeRoles(): Promise<EmployeeRole[]> {
-    return await this.employeeRoleRepository.find({
-      where: {
-        isActive: true,
-      },
-    });
+    return await this.employeeRoleRepository.find();
   }
 
   /**
@@ -37,7 +33,6 @@ export class EmployeeRoleService {
       ? null
       : await this.employeeRoleRepository.findOne({
           where: {
-            isActive: true,
             id: details.id,
           },
         });
@@ -57,8 +52,7 @@ export class EmployeeRoleService {
   }
 
   /**
-   * Removes the role with the given id from the database (sets it
-   * to inactive).
+   * Removes the role with the given id from the database.
    * Replaces all employees who had the role with the specified
    * role. There always needs to be at least one role.
    */
@@ -71,7 +65,6 @@ export class EmployeeRoleService {
     // find the role to remove
     const roleToRemove = await this.employeeRoleRepository.findOne({
       where: {
-        isActive: true,
         id: details.roleToRemoveId,
       },
     });
@@ -83,7 +76,6 @@ export class EmployeeRoleService {
     // find the role to replace with
     const roleToReplace = await this.employeeRoleRepository.findOne({
       where: {
-        isActive: true,
         id: details.roleToReplaceId,
       },
     });
@@ -95,7 +87,6 @@ export class EmployeeRoleService {
     // all employees who have the roles to be removed have their role replaced
     const employeesWithRole = await this.employeeRepository.find({
       where: {
-        isActive: true,
         role: roleToRemove,
       },
     });
@@ -108,7 +99,6 @@ export class EmployeeRoleService {
     );
 
     // finally remove the role
-    roleToRemove.isActive = false;
     await this.employeeRoleRepository.save(roleToRemove);
   }
 
@@ -118,11 +108,7 @@ export class EmployeeRoleService {
   async findHighestPaidEmployeePerRole(): Promise<{
     [roleId: number]: Employee;
   }> {
-    const roles = await this.employeeRoleRepository.find({
-      where: {
-        isActive: true,
-      },
-    });
+    const roles = await this.employeeRoleRepository.find();
 
     const result = {};
 
@@ -132,7 +118,6 @@ export class EmployeeRoleService {
           new Promise(async resolve => {
             result[role.id] = await this.employeeRepository.findOne({
               where: {
-                isActive: true,
                 role,
               },
               order: {

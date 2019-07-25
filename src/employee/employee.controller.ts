@@ -4,6 +4,7 @@ import { EmployeeService } from './employee.service';
 import { Employee } from './entities/employee.entity';
 
 import { SaveEmployeeDto } from './dto/save-employee.dto';
+import { RemoveEmployeeDto } from './dto/remove-employee.dto';
 
 @Controller('employee')
 export class EmployeeController {
@@ -25,5 +26,24 @@ export class EmployeeController {
   async saveEmployee(@Body() details: SaveEmployeeDto) {
     await this.employeeService.saveEmployee(details);
     return true;
+  }
+
+  /**
+   * Removes an employee from the database.
+   * @param details
+   */
+  @Post('remove')
+  async removeEmployee(@Body() details: RemoveEmployeeDto) {
+    await this.employeeService.removeEmployee(details);
+    return true;
+  }
+
+  /**
+   * Returns a tree hierarchy of all employees by who they oversee
+   * and report to.
+   */
+  @Get('hierarchy')
+  async getHierarchy(): Promise<Employee[]> {
+    return await this.employeeService.getHierarchy();
   }
 }

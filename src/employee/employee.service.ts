@@ -1,57 +1,73 @@
 import { Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { Repository, TreeRepository, EntityManager } from 'typeorm';
 
 import { Employee } from './entities/employee.entity';
 import { EmployeeRole } from '../employee-role/entities/employee-role.entity';
 import { SaveEmployeeDto } from './dto/save-employee.dto';
-import { InjectRepository } from '@nestjs/typeorm';
-import { SaveRoleDto } from '../employee-role/dto/save-role.dto';
-import { RemoveRoleDto } from '../employee-role/dto/remove-role.dto';
+import { InjectRepository, InjectEntityManager } from '@nestjs/typeorm';
 import { RemoveEmployeeDto } from './dto/remove-employee.dto';
 
+/**
+ * Provides functions for interacting with employee entities
+ * in a convenient and relaible manner.
+ */
 @Injectable()
 export class EmployeeService {
+  private employeeRepository: TreeRepository<Employee>;
+
   constructor(
-    @InjectRepository(Employee)
-    private readonly employeeRepository: Repository<Employee>,
+    @InjectEntityManager()
+    private readonly entityManager: EntityManager,
+
     @InjectRepository(EmployeeRole)
     private readonly employeeRoleRepository: Repository<EmployeeRole>,
-  ) {}
+  ) {
+    this.employeeRepository = this.entityManager.getTreeRepository(Employee);
+  }
 
   /**
    * Return all employees in the database with their relation ids
    */
   async getEmployees(): Promise<Employee[]> {
     return await this.employeeRepository.find({
-      where: {
-        isActive: true,
-      },
       loadRelationIds: true,
     });
   }
 
   /**
-   * Removes an employee from the database. The record isn't actually deleted,
-   * and instead is set to inactive
+   * Removes an employee from the database. The tree structure is
+   * patched such that any employee that reported to the employee
+   * instead reports to the employee they reported to.
    * @param details
    */
   async removeEmployee(details: RemoveEmployeeDto) {
     const employee = await this.employeeRepository.findOne({
       where: {
-        employeeNumber: details.employeeNumber,
-        isActive: true,
+        id: details.employeeNumber,
+      },
+      loadEagerRelations: true,
+      relations: ['reportsTo'],
+    });
+    if (!employee) {
+      throw new Error('An employee with that id does not exist');
+    }
+
+    // find all employees who reported to the employee being removed
+    const employeesWhoReportToDelete = await this.employeeRepository.find({
+      where: {
+        reportsTo: employee,
       },
     });
 
-    if (!employee) {
-      throw new Error('Cannot find an employee with that employee number');
-    }
+    // update the employees' reportsTo to the employee being removed's reportsTo field
+    await Promise.all(employeesWhoReportToDelete.map(otherEmployee => new Promise(async resolve => {
+      otherEmployee.reportsTo = employee.reportsTo || null;
+      await this.employeeRepository.save(otherEmployee);
+      resolve();
+    })));
 
-    employee.isActive = false;
-
-    await this.employeeRepository.save(employee);
-
-    return employee;
+    // finally remove the employee
+    await this.employeeRepository.remove(employee);
   }
 
   /**
@@ -64,26 +80,26 @@ export class EmployeeService {
   async saveEmployee(employeeDetails: SaveEmployeeDto) {
     // try find the existing employee in the database if the employee number
     // is given and the employee exists
-    let employee = !employeeDetails.employeeNumber ? null : await this.employeeRepository.findOne({
-      where: {
-        isActive: true,
-        employeeNumber: employeeDetails.employeeNumber,
-      },
-    });
+    let employee = !employeeDetails.employeeNumber
+      ? null
+      : await this.employeeRepository.findOne({
+          where: {
+            id: employeeDetails.employeeNumber,
+          },
+        });
 
     // if the employee does not exist, then create a new entity
     if (!employee) {
       employee = new Employee();
       // assign the employee number if given, otherwise the entity will have one generated
       if (employeeDetails.employeeNumber) {
-        employee.employeeNumber = employeeDetails.employeeNumber;
+        employee.id = employeeDetails.employeeNumber;
       }
     }
 
     // get the employee role and ensure it exists
     const employeeRole = await this.employeeRoleRepository.findOne({
       where: {
-        isActive: true,
         id: employeeDetails.employeeRoleId,
       },
     });
@@ -93,16 +109,27 @@ export class EmployeeService {
     }
 
     // find and check that the "reports to" employee exists if the parameter was given
-    const reportsToEmployee = !employeeDetails.reportsToEmployeeId ? null : await this.employeeRepository.findOne({
-      where: {
-        isActive: true,
-        employeeNumber: employeeDetails.reportsToEmployeeId,
-      },
-    });
+    const reportsToEmployee = !employeeDetails.reportsToEmployeeId
+      ? null
+      : await this.employeeRepository.findOne({
+          where: {
+            id: employeeDetails.reportsToEmployeeId,
+          },
+        });
 
     // if the employee id was given and the employee could not be found throw an error
     if (employeeDetails.reportsToEmployeeId && !reportsToEmployee) {
       throw new Error('The "reports to" employee could not be found');
+    }
+
+    // prevent loops in tree structure
+    if (reportsToEmployee.id === employee.id) {
+      throw new Error('An employee cannot report to themself');
+    }
+
+    const descendents = await this.employeeRepository.findDescendants(employee);
+    if (descendents.find(descendent => descendent.id === reportsToEmployee.id)) {
+      throw new Error('An employee cannot report to an employee who reports to them');
     }
 
     // set the employee entity's details
@@ -115,5 +142,17 @@ export class EmployeeService {
 
     // save the employee
     await this.employeeRepository.save(employee);
+  }
+
+  /**
+   * Returns the employee hierarchy by who they oversee
+   * and respond to
+   */
+  async getHierarchy(): Promise<Employee[]> {
+    const treeRepository = this.entityManager.getTreeRepository(Employee);
+
+    const trees = await treeRepository.findTrees();
+
+    return trees;
   }
 }
