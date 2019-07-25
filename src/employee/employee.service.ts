@@ -208,4 +208,32 @@ export class EmployeeService {
     roleToRemove.isActive = false;
     await this.employeeRoleRepository.save(roleToRemove);
   }
+
+  /**
+   * Finds the highest earning employee per employee role
+   */
+  async findHighestPaidEmployeePerRole() {
+    const roles = await this.employeeRoleRepository.find({
+      where: {
+        isActive: true,
+      },
+    });
+
+    const result = {};
+
+    await Promise.all(roles.map(role => new Promise(async resolve => {
+      result[role.name] = await this.employeeRepository.findOne({
+        where: {
+          isActive: true,
+          role,
+        },
+        order: {
+          salary: 'DESC',
+        },
+      } as any);
+      resolve();
+    })));
+
+    return result;
+  }
 }

@@ -60,4 +60,9 @@ export class EmployeeController {
     await this.employeeService.removeEmployeeRole(details);
     return true;
   }
+
+  @Get('highest-earning-by-role')
+  async getHighestEarningbyRole() {
+    return await this.employeeService.findHighestPaidEmployeePerRole();
+  }
 }
