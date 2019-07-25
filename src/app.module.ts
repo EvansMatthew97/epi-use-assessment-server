@@ -1,25 +1,26 @@
 import { Module, CacheModule } from '@nestjs/common';
-import { ConfigModule } from './config/config.module';
-import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { EmployeeModule } from './employee/employee.module';
-import { ConfigService } from './config/config.service';
 import { Employee } from './employee/entities/employee.entity';
 import { EmployeeRole } from './employee/entities/employee-role.entity';
 
+console.log('dburl', process.env.DATABASE_URL);
+console.log('dburl', process.env.DATABASE_TYPE);
+
+console.log(process.env);
+
 @Module({
   imports: [
-    ConfigModule,
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
-        ...configService.databaseConfig,
-        synchronize: true,
-        entities: [
-          Employee,
-          EmployeeRole,
-        ],
-      } as TypeOrmModuleOptions),
-      inject: [ConfigService],
+    TypeOrmModule.forRoot({
+      synchronize: true,
+      url: process.env.DATABASE_URL || undefined,
+      type: process.env.DATABASE_TYPE as any || 'postgres',
+      database: process.env.DATABASE || undefined,
+
+      entities: [
+        Employee,
+        EmployeeRole,
+      ],
     }),
     CacheModule.register(),
     EmployeeModule,
