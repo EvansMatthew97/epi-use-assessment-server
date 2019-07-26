@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { Repository, TreeRepository, EntityManager } from 'typeorm';
+import { Repository, TreeRepository, EntityManager, LessThan } from 'typeorm';
 
 import { Employee } from './entities/employee.entity';
 import { EmployeeRole } from '../employee-role/entities/employee-role.entity';
 import { SaveEmployeeDto } from './dto/save-employee.dto';
 import { InjectRepository, InjectEntityManager } from '@nestjs/typeorm';
 import { RemoveEmployeeDto } from './dto/remove-employee.dto';
+import { format } from 'date-fns';
 
 /**
  * Provides functions for interacting with employee entities
@@ -31,6 +32,40 @@ export class EmployeeService {
   async getEmployees(): Promise<Employee[]> {
     return await this.employeeRepository.find({
       loadRelationIds: true,
+    });
+  }
+
+  /**
+   * Finds an employee by employee number
+   * @param id
+   */
+  async getEmployee(id: number) {
+    return await this.employeeRepository.findOneOrFail(id);
+  }
+
+  /**
+   * Search for an Employee by exact match of name and surname.
+   * Case-insensitive.
+   * @param name Employee's first name
+   * @param surname Employee's second name
+   */
+  async findEmployeeByName(name, surname): Promise<Employee> {
+    return await this.employeeRepository.createQueryBuilder()
+      .where('LOWER(name) = LOWER(:name) AND LOWER(surname) = LOWER(:surname)', {
+        name, surname,
+      })
+      .getOne();
+  }
+
+  /**
+   * Find employees older than a certain date
+   * @param birthdate Date to find employees born before
+   */
+  async findEmployeesOlderThan(birthdate: Date): Promise<Employee[]> {
+    return await this.employeeRepository.find({
+      where: {
+        birthdate: LessThan(format(birthdate, 'YYYY-MM-DD HH:MM:SS')),
+      },
     });
   }
 

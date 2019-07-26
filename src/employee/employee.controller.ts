@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param } from '@nestjs/common';
 import { EmployeeService } from './employee.service';
 
 import { Employee } from './entities/employee.entity';
@@ -16,6 +16,37 @@ export class EmployeeController {
   @Get()
   async getEmployees(): Promise<Employee[]> {
     return await this.employeeService.getEmployees();
+  }
+
+  /**
+   * Returns a single employee by employee number
+   * @param employeeNumber The employee's employee number
+   */
+  @Get(':employeeNumber')
+  async getEmployeeById(
+    @Param('employeeNumber') employeeNumber: number,
+  ): Promise<Employee> {
+    return await this.employeeService.getEmployee(employeeNumber);
+  }
+
+  /**
+   * Searches for a single employee by name and surname
+   * Name is case-insensitive
+   * @param name
+   * @param surname
+   */
+  @Get('search/name/:name/:surname')
+  async searchEmployeeByName(
+    @Param('name') name: string,
+    @Param('surname') surname: string,
+  ): Promise<Employee> {
+    return await this.employeeService.findEmployeeByName(name, surname);
+  }
+
+  @Get('search/older-than/:birthdate')
+  async findEmployeesOlderThanDate(@Param('birthdate') birthdate): Promise<Employee[]> {
+    birthdate = new Date(birthdate);
+    return await this.employeeService.findEmployeesOlderThan(birthdate);
   }
 
   /**
