@@ -123,7 +123,7 @@ export class EmployeeService {
     }
 
     // prevent loops in tree structure
-    if (reportsToEmployee.id === employee.id) {
+    if (reportsToEmployee && reportsToEmployee.id === employee.id) {
       throw new Error('An employee cannot report to themself');
     }
 
