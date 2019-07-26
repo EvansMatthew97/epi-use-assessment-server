@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { Employee } from '../employee/entities/employee.entity';
-import { EmployeeRole } from '../employee/entities/employee-role.entity';
+import { EmployeeRole } from '../employee-role/entities/employee-role.entity';
 
 /**
  * Configuration for testing. Uses SQLite rather than overwriting
