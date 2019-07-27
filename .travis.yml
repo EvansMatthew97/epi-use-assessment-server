@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+  "node"
+
+jobs:
+  include:
+    - stage: test
+      env:
+        - NODE_ENV=test
+      script: npm run test
+    - stage: deploy_docs
+      script: npm run doc
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        github_token: $GITHUB_TOKEN
+        local_dir: /documentation
+        on:
+          branch: master
+
+stages:
+  - deploy_docs
+  - test

@@ -1,18 +1,14 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param } from '@nestjs/common';
 import { EmployeeService } from './employee.service';
 
 import { Employee } from './entities/employee.entity';
 
-import { SaveRoleDto } from './dto/save-role.dto';
 import { SaveEmployeeDto } from './dto/save-employee.dto';
-import { EmployeeRole } from './entities/employee-role.entity';
-import { RemoveRoleDto } from './dto/remove-role.dto';
+import { RemoveEmployeeDto } from './dto/remove-employee.dto';
 
 @Controller('employee')
 export class EmployeeController {
-  constructor(
-    private readonly employeeService: EmployeeService,
-  ) {}
+  constructor(private readonly employeeService: EmployeeService) {}
 
   /**
    * Returns a list of all employees in the database
@@ -20,6 +16,37 @@ export class EmployeeController {
   @Get()
   async getEmployees(): Promise<Employee[]> {
     return await this.employeeService.getEmployees();
+  }
+
+  /**
+   * Returns a single employee by employee number
+   * @param employeeNumber The employee's employee number
+   */
+  @Get(':employeeNumber')
+  async getEmployeeById(
+    @Param('employeeNumber') employeeNumber: number,
+  ): Promise<Employee> {
+    return await this.employeeService.getEmployee(employeeNumber);
+  }
+
+  /**
+   * Searches for a single employee by name and surname
+   * Name is case-insensitive
+   * @param name
+   * @param surname
+   */
+  @Get('search/name/:name/:surname')
+  async searchEmployeeByName(
+    @Param('name') name: string,
+    @Param('surname') surname: string,
+  ): Promise<Employee> {
+    return await this.employeeService.findEmployeeByName(name, surname);
+  }
+
+  @Get('search/older-than/:birthdate')
+  async findEmployeesOlderThanDate(@Param('birthdate') birthdate): Promise<Employee[]> {
+    birthdate = new Date(birthdate);
+    return await this.employeeService.findEmployeesOlderThan(birthdate);
   }
 
   /**
@@ -33,36 +60,21 @@ export class EmployeeController {
   }
 
   /**
-   * Returns a list of all the employee roles in the database
-   */
-  @Get('roles')
-  async getRoles(): Promise<EmployeeRole[]> {
-    return await this.employeeService.getEmployeeRoles();
-  }
-
-  /**
-   * Saves an employee role. If the role already exists, updates.
-   */
-  @Post('save-role')
-  async addRole(@Body() details: SaveRoleDto) {
-    await this.employeeService.saveEmployeeRole(details);
-    return true;
-  }
-
-  /**
-   * Removes a role from the database. A replacement role is specified.
-   * The replacement role must exist and not be the same as the role
-   * being removed.
+   * Removes an employee from the database.
    * @param details
    */
-  @Post('remove-role')
-  async removeRole(@Body() details: RemoveRoleDto) {
-    await this.employeeService.removeEmployeeRole(details);
+  @Post('remove')
+  async removeEmployee(@Body() details: RemoveEmployeeDto) {
+    await this.employeeService.removeEmployee(details);
     return true;
   }
 
-  @Get('highest-earning-by-role')
-  async getHighestEarningbyRole() {
-    return await this.employeeService.findHighestPaidEmployeePerRole();
+  /**
+   * Returns a tree hierarchy of all employees by who they oversee
+   * and report to.
+   */
+  @Get('hierarchy')
+  async getHierarchy(): Promise<Employee[]> {
+    return await this.employeeService.getHierarchy();
   }
 }
