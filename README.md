@@ -1,9 +1,15 @@
-# EPI-USE Technical Assessment Project
+# EPI-USE Technical Assessment Project Server
+
 [![Build Status](https://travis-ci.com/EvansMatthew97/epi-use-assessment-server.svg?branch=master)](https://travis-ci.com/EvansMatthew97/epi-use-assessment-server)
 
+<a href="https://evansmatthew97.github.io/epi-use-assessment-server/" target="_blank">Documentation</a>
+
 ## Description
+Server source for EPI-USE technical assessment project. The server-side code provides most core functionality of the system and a persistence layer. It provides a RESTful API endpoint to the client-side application.
 
+Useful information regarding the use of endpoints can be found in the documentation link provided above.
 
+This repository is configured to automatically deploy to Heroku, run unit tests and deploy documentation to Github pages.
 
 ## Installation
 
@@ -37,21 +43,31 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-
 ## Generating Documentation
+
 This project is configured to use compodoc.
 To generate documentation, run:
+
 ```
 $ npm run doc
 ```
 
 ## Configuration
+
 All system configuration is stored in the system environment.
 These properties can be overridden using the `.env` file.
 
 An example .env file is given at `/.env.example`
 
-### Valid options and descriptions:
+Valid options and descriptions are given below:
+
+### Authentication options
+
+- SECRET - a secret key used for JWT tokens. This should be kept secret and be reasonably long and random (string).
+- ADMIN_DEFAULT_PASS - when the server first runs, there is no administrator account, hence there are no users and the system cannot be run. If no user exists, an administrator account is created with this username. (string).
+
+### Database persistence options
+
 - DATABASE - the name of the database (string)
 - DATABASE_TYPE - the type of database (sqlite, mysql, etc.)
 - DATABASE_URL - database url (contains username, password, etc. information)
