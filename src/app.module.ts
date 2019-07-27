@@ -2,6 +2,8 @@ import { Module, CacheModule } from '@nestjs/common';
 import { EmployeeModule } from './employee/employee.module';
 import { DatabaseModule } from './database/database.module';
 import { EmployeeRoleModule } from './employee-role/employee-role.module';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -11,6 +13,8 @@ import { EmployeeRoleModule } from './employee-role/employee-role.module';
 
     EmployeeModule,
     EmployeeRoleModule,
+    AuthModule,
+    UsersModule,
   ],
   controllers: [],
   providers: [],

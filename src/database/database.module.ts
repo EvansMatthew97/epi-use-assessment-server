@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { Employee } from '../employee/entities/employee.entity';
 import { EmployeeRole } from '../employee-role/entities/employee-role.entity';
+import { User } from '../users/entities/user.entity';
 
 /**
  * Configuration for testing. Uses SQLite rather than overwriting
@@ -33,7 +34,7 @@ const defaultConfig: TypeOrmModuleOptions = {
       // if in the test environment use the test configuration
       ...(process.env.NODE_ENV === 'test' ? testConfig : defaultConfig),
 
-      entities: [Employee, EmployeeRole],
+      entities: [User, Employee, EmployeeRole],
     }),
   ],
 })
