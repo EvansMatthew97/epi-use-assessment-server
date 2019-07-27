@@ -18,7 +18,7 @@ const testConfig: TypeOrmModuleOptions = {
  * server.
  */
 const defaultConfig: TypeOrmModuleOptions = {
-  url: process.env.DATBASE_URL || undefined,
+  url: process.env.DATABASE_URL || undefined,
   type: (process.env.DATABASE_TYPE as any) || 'postgres',
   database: process.env.DATABASE || undefined,
 };
