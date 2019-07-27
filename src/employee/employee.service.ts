@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import { Repository, TreeRepository, EntityManager, LessThan } from 'typeorm';
 
 import { Employee } from './entities/employee.entity';
@@ -84,7 +84,7 @@ export class EmployeeService {
       relations: ['reportsTo'],
     });
     if (!employee) {
-      throw new Error('An employee with that id does not exist');
+      throw new BadRequestException('An employee with that id does not exist');
     }
 
     // find all employees who reported to the employee being removed
@@ -140,7 +140,7 @@ export class EmployeeService {
     });
 
     if (!employeeRole) {
-      throw new Error('The provided employee role does not exist');
+      throw new BadRequestException('The provided employee role does not exist');
     }
 
     // find and check that the "reports to" employee exists if the parameter was given
@@ -154,17 +154,17 @@ export class EmployeeService {
 
     // if the employee id was given and the employee could not be found throw an error
     if (employeeDetails.reportsToEmployeeId && !reportsToEmployee) {
-      throw new Error('The "reports to" employee could not be found');
+      throw new BadRequestException('The "reports to" employee could not be found');
     }
 
     // prevent loops in tree structure
     if (reportsToEmployee && reportsToEmployee.id === employee.id) {
-      throw new Error('An employee cannot report to themself');
+      throw new BadRequestException('An employee cannot report to themself');
     }
 
     const descendents = await this.employeeRepository.findDescendants(employee);
     if (descendents.find(descendent => descendent.id === reportsToEmployee.id)) {
-      throw new Error('An employee cannot report to an employee who reports to them');
+      throw new BadRequestException('An employee cannot report to an employee who reports to them');
     }
 
     // set the employee entity's details

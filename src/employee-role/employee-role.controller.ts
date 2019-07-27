@@ -1,10 +1,12 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
 import { SaveRoleDto } from './dto/save-role.dto';
 import { EmployeeRole } from './entities/employee-role.entity';
 import { RemoveRoleDto } from './dto/remove-role.dto';
 import { EmployeeRoleService } from './employee-role.service';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('employee-role')
+@UseGuards(AuthGuard('jwt'))
 export class EmployeeRoleController {
   constructor(private readonly employeeRoleService: EmployeeRoleService) {}
 

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 
 import { InjectRepository } from '@nestjs/typeorm';
 import { Employee } from '../employee/entities/employee.entity';
@@ -59,7 +59,7 @@ export class EmployeeRoleService {
   async removeEmployeeRole(details: RemoveRoleDto) {
     // prevent a role being replaced by itself
     if (details.roleToRemoveId === details.roleToReplaceId) {
-      throw new Error('Cannot replace removed role with the same role');
+      throw new BadRequestException('Cannot replace removed role with the same role');
     }
 
     // find the role to remove
@@ -70,7 +70,7 @@ export class EmployeeRoleService {
     });
 
     if (!roleToRemove) {
-      throw new Error('Cannot find an employee role to remove with that id');
+      throw new BadRequestException('Cannot find an employee role to remove with that id');
     }
 
     // find the role to replace with
@@ -81,7 +81,7 @@ export class EmployeeRoleService {
     });
 
     if (!roleToReplace) {
-      throw new Error('Cannot find an employee role to replace with that id');
+      throw new BadRequestException('Cannot find an employee role to replace with that id');
     }
 
     // all employees who have the roles to be removed have their role replaced
