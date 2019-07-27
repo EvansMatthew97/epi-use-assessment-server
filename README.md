@@ -1,5 +1,7 @@
-# EPI-USE Technical Assessment Project
+# EPI-USE Technical Assessment Project Server
 [![Build Status](https://travis-ci.com/EvansMatthew97/epi-use-assessment-server.svg?branch=master)](https://travis-ci.com/EvansMatthew97/epi-use-assessment-server)
+
+<a href="https://evansmatthew97.github.io/epi-use-assessment-server/" target="_blank">Documentation</a>
 
 ## Description
 
