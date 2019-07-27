@@ -32,6 +32,8 @@ $ npm run start:prod
 
 ## Test
 
+***NOTE: Unit testing has not been implemented yet***
+
 ```bash
 # unit tests
 $ npm run test
