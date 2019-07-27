@@ -11,10 +11,11 @@ import { UsersModule } from './users/users.module';
 
     DatabaseModule,
 
-    EmployeeModule,
-    EmployeeRoleModule,
     AuthModule,
     UsersModule,
+
+    EmployeeModule,
+    EmployeeRoleModule,
   ],
   controllers: [],
   providers: [],

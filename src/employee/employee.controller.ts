@@ -1,12 +1,14 @@
-import { Controller, Post, Body, Get, Param } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, UseGuards, NotFoundException } from '@nestjs/common';
 import { EmployeeService } from './employee.service';
 
 import { Employee } from './entities/employee.entity';
 
 import { SaveEmployeeDto } from './dto/save-employee.dto';
 import { RemoveEmployeeDto } from './dto/remove-employee.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('employee')
+@UseGuards(AuthGuard('jwt'))
 export class EmployeeController {
   constructor(private readonly employeeService: EmployeeService) {}
 
@@ -22,11 +24,15 @@ export class EmployeeController {
    * Returns a single employee by employee number
    * @param employeeNumber The employee's employee number
    */
-  @Get(':employeeNumber')
+  @Get('search/id/:employeeNumber')
   async getEmployeeById(
     @Param('employeeNumber') employeeNumber: number,
   ): Promise<Employee> {
-    return await this.employeeService.getEmployee(employeeNumber);
+    try {
+      return await this.employeeService.getEmployee(employeeNumber);
+    } catch (exception) {
+      throw new NotFoundException('Could not find an entity with that name');
+    }
   }
 
   /**

@@ -1,4 +1,4 @@
-import { Controller, Post, UseGuards, Request } from '@nestjs/common';
+import { Controller, Post, UseGuards, Request, Get } from '@nestjs/common';
 import { AuthService } from '../auth/auth.service';
 import { AuthGuard } from '@nestjs/passport';
 
@@ -22,7 +22,7 @@ export class UsersController {
    * Verify that a token is valid without generating a new one.
    */
   @UseGuards(AuthGuard('jwt'))
-  @Post('verify-token')
+  @Get('verify-token')
   async verifyToken() {
     return true;
   }
