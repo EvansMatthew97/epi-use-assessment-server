@@ -1,5 +1,5 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
-import { Repository, TreeRepository, EntityManager, LessThan } from 'typeorm';
+import { Repository, TreeRepository, LessThan } from 'typeorm';
 
 import { Employee } from './entities/employee.entity';
 import { EmployeeRole } from '../employee-role/entities/employee-role.entity';
@@ -14,17 +14,13 @@ import { format } from 'date-fns';
  */
 @Injectable()
 export class EmployeeService {
-  private employeeRepository: TreeRepository<Employee>;
-
   constructor(
-    @InjectEntityManager()
-    private readonly entityManager: EntityManager,
+    @InjectRepository(Employee)
+    private readonly employeeRepository: Repository<Employee>,
 
     @InjectRepository(EmployeeRole)
     private readonly employeeRoleRepository: Repository<EmployeeRole>,
-  ) {
-    this.employeeRepository = this.entityManager.getTreeRepository(Employee);
-  }
+  ) {}
 
   /**
    * Return all employees in the database with their relation ids
@@ -102,6 +98,7 @@ export class EmployeeService {
     })));
 
     // finally remove the employee
+    const id = employee.id;
     await this.employeeRepository.remove(employee);
   }
 
@@ -162,8 +159,8 @@ export class EmployeeService {
       throw new BadRequestException('An employee cannot report to themself');
     }
 
-    const descendents = await this.employeeRepository.findDescendants(employee);
-    if (descendents.find(descendent => descendent.id === reportsToEmployee.id)) {
+    const descendants = await this.findDescendants(employee); // TODO: fix await this.employeeRepository.findDescendants(employee);
+    if (reportsToEmployee && descendants.find(descendant => descendant.id === reportsToEmployee.id)) {
       throw new BadRequestException('An employee cannot report to an employee who reports to them');
     }
 
@@ -179,15 +176,73 @@ export class EmployeeService {
     await this.employeeRepository.save(employee);
   }
 
+  private async buildTrees(): Promise<{
+    lookup: {[id: number]: Employee};
+    roots: Employee[]
+  }> {
+    const employees = (await this.employeeRepository.find({
+      loadRelationIds: true,
+    }));
+    employees.forEach(employee => {
+      employee.oversees = [];
+    });
+
+    const lookup = employees.reduce((ob, employee) => {
+      ob[employee.id] = employee;
+      return ob;
+    }, {});
+
+    employees.forEach(employee => {
+      if (!employee.reportsTo) {
+        return;
+      }
+      // add the employee to the list of children
+      lookup[employee.reportsTo as any].oversees.push(employee);
+    });
+
+    const roots = Object.keys(lookup).reduce((arr, id) => {
+      const employee: Employee = lookup[id];
+      if (!employee.reportsTo) {
+        arr.push(employee);
+      }
+      return arr;
+    }, []);
+
+    return {
+      lookup,
+      roots,
+    };
+  }
+
+  /**
+   * Finds all descendant employees for the given employee.
+   * Includes itself.
+   */
+  private async findDescendants(employee: Employee): Promise<Employee[]> {
+    const { lookup } = await this.buildTrees();
+
+    const root = lookup[employee.id];
+
+    if (!root) {
+      return [];
+    }
+
+    const searchNode = (node: Employee, descendants = []) => {
+      descendants.push(node);
+      node.oversees.forEach(child => searchNode(child, descendants));
+      return descendants;
+    };
+
+    return searchNode(root);
+  }
+
   /**
    * Returns the employee hierarchy by who they oversee
    * and respond to
    */
   async getHierarchy(): Promise<Employee[]> {
-    const treeRepository = this.entityManager.getTreeRepository(Employee);
+    const trees = await this.buildTrees();
 
-    const trees = await treeRepository.findTrees();
-
-    return trees;
+    return trees.roots;
   }
 }
