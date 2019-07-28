@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, Tree, TreeParent, TreeChildren } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
 import { EmployeeRole } from '../../employee-role/entities/employee-role.entity';
 
 /**
@@ -11,7 +11,6 @@ import { EmployeeRole } from '../../employee-role/entities/employee-role.entity'
  * An employee may oversee or be reported to by multiple employees.
  */
 @Entity()
-@Tree('materialized-path')
 export class Employee {
   @PrimaryGeneratedColumn()
   id: number;
@@ -35,16 +34,16 @@ export class Employee {
   role: EmployeeRole;
 
   /**
-   * An employee may oversee many employees
-   */
-  @TreeChildren()
-  oversees: Employee[];
-
-  /**
    * An employee may report to a single employee
    */
-  @TreeParent()
+  @ManyToOne(t => Employee, e => e.oversees)
   reportsTo: Employee;
+
+  /**
+   * An employee may oversee many employees
+   */
+  @OneToMany(t => Employee, e => e.reportsTo)
+  oversees: Employee[];
 
   /**
    * Comparison operator for employees.
