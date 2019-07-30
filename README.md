@@ -17,6 +17,8 @@ This server is built using the **Nest.js framework**. It is highly modular and c
 
 **TypeORM** has been used as an object-relational mapper for this project. It provides a simple yet advanced interface between TypeScript objects and many database providers (this project uses SQLite for local development and Postgres for production). Nest.js also integrates very well with TypeORM.
 
+**Heroku** is used to deploy this server. It provides simple continuous deployment with decent performance for free. The server API base url is [epi-use-assessment-server.herokuapp.com](https://epi-use-assessment-server.herokuapp.com).
+
 
 ## Installation
 
