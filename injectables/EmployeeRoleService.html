@@ -1,0 +1,612 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>server documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">server documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>EmployeeRoleService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/employee-role/employee-role.service.ts</code>
+        </p>
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findHighestPaidEmployeePerRole">findHighestPaidEmployeePerRole</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getEmployeeRoles">getEmployeeRoles</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#removeEmployeeRole">removeEmployeeRole</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#saveEmployeeRole">saveEmployeeRole</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(employeeRepository: <a href="../classes/Employee.html">Repository<Employee></a>, employeeRoleRepository: Repository<EmployeeRole>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/employee-role/employee-role.service.ts:11</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>employeeRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/Employee.html" target="_self" >Repository&lt;Employee&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>employeeRoleRepository</td>
+                                                  
+                                                        <td>
+                                                                    <code>Repository&lt;EmployeeRole&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findHighestPaidEmployeePerRole"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            findHighestPaidEmployeePerRole
+                        </b>
+                        <a href="#findHighestPaidEmployeePerRole"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findHighestPaidEmployeePerRole()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="108"
+                            class="link-to-prism">src/employee-role/employee-role.service.ts:108</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Finds the highest earning employee per employee role</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getEmployeeRoles"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            getEmployeeRoles
+                        </b>
+                        <a href="#getEmployeeRoles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getEmployeeRoles()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/employee-role/employee-role.service.ts:22</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Returns all employee roles from the database</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;EmployeeRole[]&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeEmployeeRole"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            removeEmployeeRole
+                        </b>
+                        <a href="#removeEmployeeRole"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeEmployeeRole(details: <a href="../classes/RemoveRoleDto.html">RemoveRoleDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/employee-role/employee-role.service.ts:59</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Removes the role with the given id from the database.
+Replaces all employees who had the role with the specified
+role. There always needs to be at least one role.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>details</td>
+                                    <td>
+                                                <code><a href="../classes/RemoveRoleDto.html" target="_self" >RemoveRoleDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveEmployeeRole"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            saveEmployeeRole
+                        </b>
+                        <a href="#saveEmployeeRole"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>saveEmployeeRole(details: <a href="../classes/SaveRoleDto.html">SaveRoleDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/employee-role/employee-role.service.ts:30</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Inserts or updates an existing employee role.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>details</td>
+                                    <td>
+                                                <code><a href="../classes/SaveRoleDto.html" target="_self" >SaveRoleDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, BadRequestException } from &#x27;@nestjs/common&#x27;;
+
+import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
+import { Employee } from &#x27;../employee/entities/employee.entity&#x27;;
+import { EmployeeRole } from &#x27;./entities/employee-role.entity&#x27;;
+import { Repository } from &#x27;typeorm&#x27;;
+import { SaveRoleDto } from &#x27;./dto/save-role.dto&#x27;;
+import { RemoveRoleDto } from &#x27;./dto/remove-role.dto&#x27;;
+
+@Injectable()
+export class EmployeeRoleService {
+  constructor(
+    @InjectRepository(Employee)
+    private readonly employeeRepository: Repository&lt;Employee&gt;,
+    @InjectRepository(EmployeeRole)
+    private readonly employeeRoleRepository: Repository&lt;EmployeeRole&gt;,
+  ) {}
+
+  /**
+   * Returns all employee roles from the database
+   */
+  async getEmployeeRoles(): Promise&lt;EmployeeRole[]&gt; {
+    return await this.employeeRoleRepository.find();
+  }
+
+  /**
+   * Inserts or updates an existing employee role.
+   * @param details
+   */
+  async saveEmployeeRole(details: SaveRoleDto) {
+    // find existing role if id provided
+    let role &#x3D; !details.id
+      ? null
+      : await this.employeeRoleRepository.findOne({
+          where: {
+            id: details.id,
+          },
+        });
+
+    // role doesn&#x27;t exist, so create it
+    if (!role) {
+      role &#x3D; new EmployeeRole();
+      // assign role id if given
+      if (details.id) {
+        role.id &#x3D; details.id;
+      }
+    }
+
+    role.name &#x3D; details.name;
+
+    await this.employeeRoleRepository.save(role);
+  }
+
+  /**
+   * Removes the role with the given id from the database.
+   * Replaces all employees who had the role with the specified
+   * role. There always needs to be at least one role.
+   */
+  async removeEmployeeRole(details: RemoveRoleDto) {
+    // prevent a role being replaced by itself
+    if (details.roleToRemoveId &#x3D;&#x3D;&#x3D; details.roleToReplaceId) {
+      throw new BadRequestException(&#x27;Cannot replace removed role with the same role&#x27;);
+    }
+
+    // find the role to remove
+    const roleToRemove &#x3D; await this.employeeRoleRepository.findOne({
+      where: {
+        id: details.roleToRemoveId,
+      },
+    });
+
+    if (!roleToRemove) {
+      throw new BadRequestException(&#x27;Cannot find an employee role to remove with that id&#x27;);
+    }
+
+    // find the role to replace with
+    const roleToReplace &#x3D; await this.employeeRoleRepository.findOne({
+      where: {
+        id: details.roleToReplaceId,
+      },
+    });
+
+    if (!roleToReplace) {
+      throw new BadRequestException(&#x27;Cannot find an employee role to replace with that id&#x27;);
+    }
+
+    // all employees who have the roles to be removed have their role replaced
+    const employeesWithRole &#x3D; await this.employeeRepository.find({
+      where: {
+        role: roleToRemove,
+      },
+    });
+
+    await this.employeeRepository.save(
+      employeesWithRole.map(employee &#x3D;&gt; {
+        employee.role &#x3D; roleToReplace;
+        return employee;
+      }),
+    );
+
+    // finally remove the role
+    await this.employeeRoleRepository.remove(roleToRemove);
+  }
+
+  /**
+   * Finds the highest earning employee per employee role
+   */
+  async findHighestPaidEmployeePerRole(): Promise&lt;{
+    [roleId: number]: Employee;
+  }&gt; {
+    const roles &#x3D; await this.employeeRoleRepository.find();
+
+    const result &#x3D; {};
+
+    await Promise.all(
+      roles.map(
+        role &#x3D;&gt;
+          new Promise(async resolve &#x3D;&gt; {
+            result[role.id] &#x3D; await this.employeeRepository.findOne({
+              where: {
+                role,
+              },
+              order: {
+                salary: &#x27;DESC&#x27;,
+              },
+            } as any);
+            resolve();
+          }),
+      ),
+    );
+
+    return result;
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'EmployeeRoleService.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,1120 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>server documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">server documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>EmployeeService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/employee/employee.service.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Provides functions for interacting with employee entities
+in a convenient and relaible manner.</p>
+
+            </p>
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#buildTrees">buildTrees</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#findDescendants">findDescendants</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findEmployeeByName">findEmployeeByName</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findEmployeesOlderThan">findEmployeesOlderThan</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getEmployee">getEmployee</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getEmployees">getEmployees</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getHierarchy">getHierarchy</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#removeEmployee">removeEmployee</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#saveEmployee">saveEmployee</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(employeeRepository: <a href="../classes/Employee.html">Repository<Employee></a>, employeeRoleRepository: Repository<EmployeeRole>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/employee/employee.service.ts:16</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>employeeRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/Employee.html" target="_self" >Repository&lt;Employee&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>employeeRoleRepository</td>
+                                                  
+                                                        <td>
+                                                                    <code>Repository&lt;EmployeeRole&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="buildTrees"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                            buildTrees
+                        </b>
+                        <a href="#buildTrees"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>buildTrees()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="179"
+                            class="link-to-prism">src/employee/employee.service.ts:179</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findDescendants"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                            findDescendants
+                        </b>
+                        <a href="#findDescendants"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findDescendants(employee: <a href="../classes/Employee.html">Employee</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="221"
+                            class="link-to-prism">src/employee/employee.service.ts:221</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Finds all descendant employees for the given employee.
+Includes itself.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>employee</td>
+                                    <td>
+                                                <code><a href="../classes/Employee.html" target="_self" >Employee</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/Employee.html" target="_self" >Promise&lt;Employee[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findEmployeeByName"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            findEmployeeByName
+                        </b>
+                        <a href="#findEmployeeByName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findEmployeeByName(name, surname)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/employee/employee.service.ts:48</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Search for an Employee by exact match of name and surname.
+Case-insensitive.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>name</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Employee&#39;s first name</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>surname</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Employee&#39;s second name</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/Employee.html" target="_self" >Promise&lt;Employee&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findEmployeesOlderThan"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            findEmployeesOlderThan
+                        </b>
+                        <a href="#findEmployeesOlderThan"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findEmployeesOlderThan(birthdate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">Date</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/employee/employee.service.ts:60</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Find employees older than a certain date</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>birthdate</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Date to find employees born before</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/Employee.html" target="_self" >Promise&lt;Employee[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getEmployee"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            getEmployee
+                        </b>
+                        <a href="#getEmployee"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getEmployee(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="38"
+                            class="link-to-prism">src/employee/employee.service.ts:38</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Finds an employee by employee number</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getEmployees"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            getEmployees
+                        </b>
+                        <a href="#getEmployees"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getEmployees()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/employee/employee.service.ts:28</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Return all employees in the database with their relation ids</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/Employee.html" target="_self" >Promise&lt;Employee[]&gt;</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getHierarchy"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            getHierarchy
+                        </b>
+                        <a href="#getHierarchy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getHierarchy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="243"
+                            class="link-to-prism">src/employee/employee.service.ts:243</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Returns the employee hierarchy by who they oversee
+and respond to</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/Employee.html" target="_self" >Promise&lt;Employee[]&gt;</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeEmployee"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            removeEmployee
+                        </b>
+                        <a href="#removeEmployee"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeEmployee(details: <a href="../classes/RemoveEmployeeDto.html">RemoveEmployeeDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/employee/employee.service.ts:74</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Removes an employee from the database. The tree structure is
+patched such that any employee that reported to the employee
+instead reports to the employee they reported to.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>details</td>
+                                    <td>
+                                                <code><a href="../classes/RemoveEmployeeDto.html" target="_self" >RemoveEmployeeDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveEmployee"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            saveEmployee
+                        </b>
+                        <a href="#saveEmployee"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>saveEmployee(employeeDetails: <a href="../classes/SaveEmployeeDto.html">SaveEmployeeDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="112"
+                            class="link-to-prism">src/employee/employee.service.ts:112</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>If an employee with the given employee number exists, updates the existing
+employee. Otherwise creates a new employee entity with the given details.
+If the employee number is given and the employee does not exist, creates an
+employee entity with the given id.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>employeeDetails</td>
+                                    <td>
+                                                <code><a href="../classes/SaveEmployeeDto.html" target="_self" >SaveEmployeeDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/Employee.html" target="_self" >Promise&lt;Employee&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, BadRequestException } from &#x27;@nestjs/common&#x27;;
+import { Repository, TreeRepository, LessThan } from &#x27;typeorm&#x27;;
+
+import { Employee } from &#x27;./entities/employee.entity&#x27;;
+import { EmployeeRole } from &#x27;../employee-role/entities/employee-role.entity&#x27;;
+import { SaveEmployeeDto } from &#x27;./dto/save-employee.dto&#x27;;
+import { InjectRepository, InjectEntityManager } from &#x27;@nestjs/typeorm&#x27;;
+import { RemoveEmployeeDto } from &#x27;./dto/remove-employee.dto&#x27;;
+import { format } from &#x27;date-fns&#x27;;
+
+/**
+ * Provides functions for interacting with employee entities
+ * in a convenient and relaible manner.
+ */
+@Injectable()
+export class EmployeeService {
+  constructor(
+    @InjectRepository(Employee)
+    private readonly employeeRepository: Repository&lt;Employee&gt;,
+
+    @InjectRepository(EmployeeRole)
+    private readonly employeeRoleRepository: Repository&lt;EmployeeRole&gt;,
+  ) {}
+
+  /**
+   * Return all employees in the database with their relation ids
+   */
+  async getEmployees(): Promise&lt;Employee[]&gt; {
+    return await this.employeeRepository.find({
+      loadRelationIds: true,
+    });
+  }
+
+  /**
+   * Finds an employee by employee number
+   * @param id
+   */
+  async getEmployee(id: number) {
+    return await this.employeeRepository.findOneOrFail(id);
+  }
+
+  /**
+   * Search for an Employee by exact match of name and surname.
+   * Case-insensitive.
+   * @param name Employee&#x27;s first name
+   * @param surname Employee&#x27;s second name
+   */
+  async findEmployeeByName(name, surname): Promise&lt;Employee&gt; {
+    return await this.employeeRepository.createQueryBuilder()
+      .where(&#x27;LOWER(name) &#x3D; LOWER(:name) AND LOWER(surname) &#x3D; LOWER(:surname)&#x27;, {
+        name, surname,
+      })
+      .getOne();
+  }
+
+  /**
+   * Find employees older than a certain date
+   * @param birthdate Date to find employees born before
+   */
+  async findEmployeesOlderThan(birthdate: Date): Promise&lt;Employee[]&gt; {
+    return await this.employeeRepository.find({
+      where: {
+        birthdate: LessThan(format(birthdate, &#x27;YYYY-MM-DD HH:MM:SS&#x27;)),
+      },
+    });
+  }
+
+  /**
+   * Removes an employee from the database. The tree structure is
+   * patched such that any employee that reported to the employee
+   * instead reports to the employee they reported to.
+   * @param details
+   */
+  async removeEmployee(details: RemoveEmployeeDto) {
+    const employee &#x3D; await this.employeeRepository.findOne({
+      where: {
+        id: details.employeeNumber,
+      },
+      loadEagerRelations: true,
+      relations: [&#x27;reportsTo&#x27;],
+    });
+    if (!employee) {
+      throw new BadRequestException(&#x27;An employee with that id does not exist&#x27;);
+    }
+
+    // find all employees who reported to the employee being removed
+    const employeesWhoReportToDelete &#x3D; await this.employeeRepository.find({
+      where: {
+        reportsTo: employee,
+      },
+    });
+
+    // update the employees&#x27; reportsTo to the employee being removed&#x27;s reportsTo field
+    await Promise.all(employeesWhoReportToDelete.map(otherEmployee &#x3D;&gt; new Promise(async resolve &#x3D;&gt; {
+      otherEmployee.reportsTo &#x3D; employee.reportsTo || null;
+      await this.employeeRepository.save(otherEmployee);
+      resolve();
+    })));
+
+    // finally remove the employee
+    const id &#x3D; employee.id;
+    await this.employeeRepository.remove(employee);
+  }
+
+  /**
+   * If an employee with the given employee number exists, updates the existing
+   * employee. Otherwise creates a new employee entity with the given details.
+   * If the employee number is given and the employee does not exist, creates an
+   * employee entity with the given id.
+   * @param employeeDetails
+   */
+  async saveEmployee(employeeDetails: SaveEmployeeDto): Promise&lt;Employee&gt; {
+    // try find the existing employee in the database if the employee number
+    // is given and the employee exists
+    let employee &#x3D; !employeeDetails.employeeNumber
+      ? null
+      : await this.employeeRepository.findOne({
+          where: {
+            id: employeeDetails.employeeNumber,
+          },
+        });
+
+    // if the employee does not exist, then create a new entity
+    if (!employee) {
+      employee &#x3D; new Employee();
+      // assign the employee number if given, otherwise the entity will have one generated
+      if (employeeDetails.employeeNumber) {
+        employee.id &#x3D; employeeDetails.employeeNumber;
+      }
+    }
+
+    // get the employee role and ensure it exists
+    const employeeRole &#x3D; await this.employeeRoleRepository.findOne({
+      where: {
+        id: employeeDetails.employeeRoleId,
+      },
+    });
+
+    if (!employeeRole) {
+      throw new BadRequestException(&#x27;The provided employee role does not exist&#x27;);
+    }
+
+    // find and check that the &quot;reports to&quot; employee exists if the parameter was given
+    const reportsToEmployee &#x3D; !employeeDetails.reportsToEmployeeId
+      ? null
+      : await this.employeeRepository.findOne({
+          where: {
+            id: employeeDetails.reportsToEmployeeId,
+          },
+        });
+
+    // if the employee id was given and the employee could not be found throw an error
+    if (employeeDetails.reportsToEmployeeId &amp;&amp; !reportsToEmployee) {
+      throw new BadRequestException(&#x27;The &quot;reports to&quot; employee could not be found&#x27;);
+    }
+
+    // prevent loops in tree structure
+    if (reportsToEmployee &amp;&amp; reportsToEmployee.id &#x3D;&#x3D;&#x3D; employee.id) {
+      throw new BadRequestException(&#x27;An employee cannot report to themself&#x27;);
+    }
+
+    const descendants &#x3D; await this.findDescendants(employee); // TODO: fix await this.employeeRepository.findDescendants(employee);
+    if (reportsToEmployee &amp;&amp; descendants.find(descendant &#x3D;&gt; descendant.id &#x3D;&#x3D;&#x3D; reportsToEmployee.id)) {
+      throw new BadRequestException(&#x27;An employee cannot report to an employee who reports to them&#x27;);
+    }
+
+    // set the employee entity&#x27;s details
+    employee.name &#x3D; employeeDetails.name;
+    employee.surname &#x3D; employeeDetails.surname;
+    employee.birthdate &#x3D; new Date(employeeDetails.birthdate);
+    employee.salary &#x3D; employeeDetails.salary;
+    employee.role &#x3D; employeeRole;
+    employee.reportsTo &#x3D; reportsToEmployee;
+
+    // save the employee
+    return await this.employeeRepository.save(employee);
+  }
+
+  private async buildTrees(): Promise&lt;{
+    lookup: {[id: number]: Employee};
+    roots: Employee[]
+  }&gt; {
+    const employees &#x3D; (await this.employeeRepository.find({
+      loadRelationIds: true,
+    }));
+    employees.forEach(employee &#x3D;&gt; {
+      employee.oversees &#x3D; [];
+    });
+
+    const lookup &#x3D; employees.reduce((ob, employee) &#x3D;&gt; {
+      ob[employee.id] &#x3D; employee;
+      return ob;
+    }, {});
+
+    employees.forEach(employee &#x3D;&gt; {
+      if (!employee.reportsTo) {
+        return;
+      }
+      // add the employee to the list of children
+      lookup[employee.reportsTo as any].oversees.push(employee);
+    });
+
+    const roots &#x3D; Object.keys(lookup).reduce((arr, id) &#x3D;&gt; {
+      const employee: Employee &#x3D; lookup[id];
+      if (!employee.reportsTo) {
+        arr.push(employee);
+      }
+      return arr;
+    }, []);
+
+    return {
+      lookup,
+      roots,
+    };
+  }
+
+  /**
+   * Finds all descendant employees for the given employee.
+   * Includes itself.
+   */
+  private async findDescendants(employee: Employee): Promise&lt;Employee[]&gt; {
+    const { lookup } &#x3D; await this.buildTrees();
+
+    const root &#x3D; lookup[employee.id];
+
+    if (!root) {
+      return [];
+    }
+
+    const searchNode &#x3D; (node: Employee, descendants &#x3D; []) &#x3D;&gt; {
+      descendants.push(node);
+      node.oversees.forEach(child &#x3D;&gt; searchNode(child, descendants));
+      return descendants;
+    };
+
+    return searchNode(root);
+  }
+
+  /**
+   * Returns the employee hierarchy by who they oversee
+   * and respond to
+   */
+  async getHierarchy(): Promise&lt;Employee[]&gt; {
+    const trees &#x3D; await this.buildTrees();
+
+    return trees.roots;
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'EmployeeService.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
