@@ -4,6 +4,10 @@
 
 <a href="https://evansmatthew97.github.io/epi-use-assessment-server/" target="_blank">Documentation</a>
 
+API base url: [epi-use-assessment-server.herokuapp.com](https://epi-use-assessment-server.herokuapp.com)
+
+[Client Repository](https://github.com/EvansMatthew97/epi-use-assessment-client)
+
 ## Description
 Server source for EPI-USE technical assessment project. The server-side code provides most core functionality of the system and a persistence layer. It provides a RESTful API endpoint to the client-side application.
 
