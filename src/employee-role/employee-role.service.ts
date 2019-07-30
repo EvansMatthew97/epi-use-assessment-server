@@ -99,7 +99,7 @@ export class EmployeeRoleService {
     );
 
     // finally remove the role
-    await this.employeeRoleRepository.save(roleToRemove);
+    await this.employeeRoleRepository.remove(roleToRemove);
   }
 
   /**

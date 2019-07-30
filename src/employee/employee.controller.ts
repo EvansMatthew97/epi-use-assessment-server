@@ -60,9 +60,8 @@ export class EmployeeController {
    * @param details
    */
   @Post('save')
-  async saveEmployee(@Body() details: SaveEmployeeDto) {
-    await this.employeeService.saveEmployee(details);
-    return true;
+  async saveEmployee(@Body() details: SaveEmployeeDto): Promise<Employee> {
+    return await this.employeeService.saveEmployee(details);
   }
 
   /**

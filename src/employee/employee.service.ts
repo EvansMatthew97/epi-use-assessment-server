@@ -109,7 +109,7 @@ export class EmployeeService {
    * employee entity with the given id.
    * @param employeeDetails
    */
-  async saveEmployee(employeeDetails: SaveEmployeeDto) {
+  async saveEmployee(employeeDetails: SaveEmployeeDto): Promise<Employee> {
     // try find the existing employee in the database if the employee number
     // is given and the employee exists
     let employee = !employeeDetails.employeeNumber
@@ -173,7 +173,7 @@ export class EmployeeService {
     employee.reportsTo = reportsToEmployee;
 
     // save the employee
-    await this.employeeRepository.save(employee);
+    return await this.employeeRepository.save(employee);
   }
 
   private async buildTrees(): Promise<{

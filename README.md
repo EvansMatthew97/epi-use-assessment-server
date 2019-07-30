@@ -11,6 +11,13 @@ Useful information regarding the use of endpoints can be found in the documentat
 
 This repository is configured to automatically deploy to Heroku, run unit tests and deploy documentation to Github pages.
 
+
+### Technologies
+This server is built using the **Nest.js framework**. It is highly modular and configurable. Because the client-side application uses Angular (TypeScript), the choice of a *TypeScript-based server framework* which follows a very similar *MVC* pattern to Angular helps reduce time shifting paradigms between working on the  client and server code bases.
+
+**TypeORM** has been used as an object-relational mapper for this project. It provides a simple yet advanced interface between TypeScript objects and many database providers (this project uses SQLite for local development and Postgres for production). Nest.js also integrates very well with TypeORM.
+
+
 ## Installation
 
 ```bash
